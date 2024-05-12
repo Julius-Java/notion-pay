@@ -2,32 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+/* Ensures fixed navbar doesn't obstruct page content  */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    @apply pt-[52px] sm:pt-[60px] md:pt-[68px] lg:pt-[80px]
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@layer components {
+    .container {
+        @apply mx-auto w-[95%] max-w-[1280px];
+    }
+
+    .bg-gradient {
+        background-image: url("/bg-gradient-1.svg");
+        background-position: top left;
+        background-repeat: no-repeat;
+        background-size: 500px 500px;
+    }
+
+    .text-wrapper {
+        @apply relative after:content-[""] after:w-full after:h-full  after:absolute after:bottom-0 after:left-0 after:bg-[url("/herotextwrapper.svg")] after:bg-center after:bg-cover after:bg-no-repeat;
+    }
+
+    @media screen and (min-width: 640px) {
+        .bg-gradient {
+            background-image: url("/bg-gradient-1.svg"), url("/bg-gradient-2.svg");
+            background-position: top left, 100% 60%;
+            background-size: 500px 500px, 500px 500px;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        .bg-gradient {
+            background-image: url("/bg-gradient-1.svg"), url("/bg-gradient-2.svg"), url("/bg-gradient-3.svg");
+            background-position: top left, 100% 60%, 50% 50%;
+            background-size: 400px 400px, 400px 400px, auto;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .bg-gradient {
+            background-image: url("/bg-gradient-1.svg"), url("/bg-gradient-2.svg"), url("/bg-gradient-3.svg");
+            background-position: top left, 100% 60%, 50% 50%;
+            background-size: auto;
+        }
+    }
 }
+
+
